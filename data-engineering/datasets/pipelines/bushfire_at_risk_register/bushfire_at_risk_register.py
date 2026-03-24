@@ -1,4 +1,5 @@
 import urllib.request
+import json
 
 # URL of the dataset
 url_1 = 'https://discover.data.vic.gov.au/api/3/action/datastore_search?resource_id=a927e847-5818-43e2-8fe6-ad7e469fabd1&limit=1000'  
@@ -8,7 +9,6 @@ fileobj_1 = urllib.request.urlopen(url_1)
 fileobj_2 = urllib.request.urlopen(url_2)
 
 # Convert the response to a string and then to a JSON object
-import json
 data_1 = json.load(fileobj_1)
 data_2 = json.load(fileobj_2)
 
