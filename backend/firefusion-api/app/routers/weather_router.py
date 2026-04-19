@@ -1,12 +1,17 @@
-from fastapi import APIRouter, Query
+from fastapi import APIRouter
+from pydantic import BaseModel
 from app.internal.weather_service import get_weather
 
 router = APIRouter()
 
 
-@router.get("/weather")
-async def get_weather_endpoint(location: str = Query(...)):
-    """
-    GET /api/weather?location=melbourne
-    """
-    return await get_weather(location)
+# Request body model
+class WeatherRequest(BaseModel):
+    latitude: float
+    longitude: float
+
+
+@router.post("/weather")
+async def get_weather_endpoint(request: WeatherRequest):
+    
+    return await get_weather(request.latitude, request.longitude)
